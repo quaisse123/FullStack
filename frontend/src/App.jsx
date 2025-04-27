@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import ArticlesPage from './pages/ArticlesPage';
 import ArticlePage from './pages/ArticlePage';
-
+import './index.css'
 function App() {
   return (
     <Router>

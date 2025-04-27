@@ -1,0 +1,24 @@
+body {
+    background-color: rgba(23, 66, 110,0.5);
+
+}
+
+header {
+    background-color: #0C243C;
+}
+
+#SeConnecter {
+    background-color: rgb(23, 66, 110);
+    color: #fff;
+    padding: 0.5rem 1.7rem;
+    border-radius: 15px;
+    font-weight: 500; /* Met le texte en gras pour plus de visibilité */
+    cursor: pointer; /* Indique que c'est un bouton interactif */
+    transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease; /* Transition améliorée pour un effet global */
+}
+
+
+
+#SeConnecter:active {
+    transform: scale(0.99); /* Réduit légèrement la taille du bouton au clic pour un effet de pression */
+}
