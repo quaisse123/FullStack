@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../../assets/styles/Dashboard.css'
 const Cards = () => {
     return (
         <>
