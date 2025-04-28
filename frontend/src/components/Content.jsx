@@ -1,6 +1,6 @@
 function Content(props) {
     return (
-      <div className="p-4">
+      <div style={{paddingLeft : "25%"}}>
         {props.children}
       </div>
     );

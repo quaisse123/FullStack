@@ -1,0 +1,19 @@
+aside{
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    width: 25%;
+    padding-bottom:2rem;
+}
+
+aside::-webkit-scrollbar {
+    display: none;  /* Masque la barre de défilement */
+}
+
+#profile {
+    position: fixed;
+    bottom: 0;
+    width: 25%;
+    background-color:rgb(17,24,39) ;
+    cursor: pointer;
+}
