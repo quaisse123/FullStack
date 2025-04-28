@@ -1,15 +1,20 @@
 import Header from '../components/Header' 
-import Sidebar from '../components/sidebar' 
-import Content from '../components/Content' 
 import '../assets/styles/Dashboard.css'
+// Commun components
+import Sidebar from '../components/sidebar' 
+import Content from '../components/Content'
+// Dashboard components
 import Cards from '../components/dashboard/Cards' 
 import ProgressBars from '../components/dashboard/ProgressBars'
 import Notifications from '../components/dashboard/Notifications'
 import Events from '../components/dashboard/Events'
+// ===============================================================
+
 function LandingPage() {
     return (
         <div style={{display : "flex"}}>
         <Sidebar />
+
           <Content>
             <main className="flex-1 p-6 bg-gray-100">
                 <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
@@ -33,6 +38,7 @@ function LandingPage() {
                 </div>
             </main>
           </Content>
+          
         </div>
     );
 }
