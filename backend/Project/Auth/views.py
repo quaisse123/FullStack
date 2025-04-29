@@ -22,7 +22,7 @@ def login_view(request):
             return redirect('home')  # redirige vers la page d'accueil
         else:
             messages.error(request, "Email ou mot de passe invalide.")
-    return render(request, 'login.html')
+    pass
 
 
 def logout_view(request):

@@ -1,16 +1,14 @@
 // src/App.jsx
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import ArticlesPage from './pages/ArticlesPage';
-import ArticlePage from './pages/ArticlePage';
+import Login from './pages/Login';
 import './index.css'
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/articles" element={<ArticlesPage />} />
-        <Route path="/article" element={<ArticlePage />} />
+        <Route path="/auth/login" element={<Login />} />
       </Routes>
     </Router>
   );
