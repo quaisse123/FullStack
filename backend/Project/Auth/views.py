@@ -1,28 +1,34 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Etudiant
+from .models import Etudiant , MembreBureau ,Adherent
 from django.contrib import messages
 
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+        data = json.loads(request.body)
+        email = data.get('email')
+        password = data.get('password')
 
-        # Trouver l'utilisateur correspondant à l'email
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
-            messages.error(request, "Email ou mot de passe invalide.")
-            return redirect('login')
+            return JsonResponse({'error': 'Invalid credentials'}, status=400)
 
         user = authenticate(request, username=user.username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')  # redirige vers la page d'accueil
+            
+            return JsonResponse({'success': True})
         else:
-            messages.error(request, "Email ou mot de passe invalide.")
-    pass
+            return JsonResponse({'error': 'Invalid credentials'}, status=400)
+
 
 
 def logout_view(request):

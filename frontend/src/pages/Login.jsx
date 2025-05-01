@@ -1,172 +1,137 @@
 import { useState } from 'react';
 import brandimage from '../assets/images/brand.png'
-export default function LoginPage() {
-  const [matricule, setMatricule] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
-  const [messages, setMessages] = useState([]); // ex: [{ type: 'success', text: 'Connexion réussie' }]
+import { useNavigate } from 'react-router-dom';
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: envoyer matricule/password vers votre API ici
-    console.log({ matricule, password, rememberMe });
-  };
+export default function LoginPage() {
+
+    // Création des états pour stocker les valeurs du formulaire
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate(); //pour la redirection 
+
+
+    const handleSubmit = async (e) => {
+      e.preventDefault(); // Empêche le rechargement de la page
+    
+      try {
+        const response = await fetch('http://localhost:8000/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include', // 🔒 important pour la session Django
+          body: JSON.stringify({ email, password }),
+        });
+    
+        const data = await response.json();
+    
+        if (data.success) {
+          const test = await fetch('http://localhost:8000/dashboard/', {
+            credentials: 'include',
+          });
+        
+          const info = await test.json();
+          console.log(info); // vérifie si l'utilisateur est reconnu
+        
+          navigate('/dashboard');
+        }
+      } catch (error) {
+        console.error('Erreur lors de la connexion', error);
+        alert('Erreur serveur');
+      }
+    };
+    
 
   return (
-    <>
-  {/* Navbar */}
-  <nav className="bg-gray-900 border-b border-gray-800 fixed top-0 w-full z-50">
-    <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse" id="brand">
-        <img src={brandimage} className="h-10" alt="Trendify Logo" />
-        <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Trendify</span>
-      </a>
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+      <div className="w-full max-w-md p-8 rounded-xl shadow-lg bg-gray-800 space-y-6">
+        {/* Logo + Title */}
+        <div className="flex items-center justify-center gap-2">
+          <img
+            src={ brandimage } // remplace par ton logo réel
+            alt="Trendify"
+            className="h-10 w-10"
+          />
+          <h1 className="text-2xl font-bold">Trendify</h1>
+        </div>
 
-      <div className="flex items-center space-x-3 md:order-2 rtl:space-x-reverse">
-        <button id="contactus" className="text-sm font-medium text-gray-300 hover:text-blue-400 transition">
-          Contactez-nous
-        </button>
+        {/* Heading */}
+        <div>
+          <h2 className="text-center text-xl font-semibold">Sign in to your account</h2>
+          <p className="text-center text-sm text-gray-400">
+            Welcome back! Please enter your credentials.
+          </p>
+        </div>
 
-        {/* Menu Burger Mobile */}
-        <button
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-700 focus:outline-none"
-          aria-controls="navbar-user"
-          aria-expanded="false"
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 17 14" xmlns="http://www.w3.org/2000/svg">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  {/* Contenu principal */}
-  <div className="flex flex-col md:flex-row min-h-screen pt-20 bg-gray-900">
-    
-    {/* Partie gauche */}
-    <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-gray-800 p-8">
-      <div className="flex items-center w-full space-x-4 mb-6">
-        <img src={brandimage} width="60" alt="Trendify Logo" />
-        <div className="text-3xl font-bold text-white">Trendify</div>
-      </div>
-
-      <h1 className="text-3xl md:text-4xl font-bold mb-4 text-left text-white">
-        Gérez vos clubs universitaires avec facilité
-      </h1>
-
-      <p className="text-gray-400 text-left mb-6">
-        Centralisez, suivez et organisez les activités, événements et membres de vos clubs.
-        Pensé pour les universités modernes et les associations étudiantes dynamiques.
-      </p>
-
-      <span className="text-blue-400 font-medium">
-        Plus de 100 000 étudiants utilisent Trendify
-      </span>
-    </div>
-
-    {/* Partie droite - Formulaire login */}
-    <div className="w-full md:w-1/2 flex items-center justify-center p-8">
-      <div className="w-full bg-gray-800 rounded-lg shadow-md dark:border dark:border-gray-700 sm:max-w-md p-6 space-y-6">
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl text-center">
-          Se connecter
-        </h1>
-
-        <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+        {/* Form */}
+        <form className="space-y-5" onSubmit={handleSubmit}>
+          {/* Email */}
           <div>
-            <label htmlFor="matricule" className="block mb-2 text-sm font-medium text-gray-300">
-              Matricule
+            <label htmlFor="email" className="block text-sm font-medium mb-1">
+              Email address
             </label>
-            <input
-              type="text"
-              id="matricule"
-              value={matricule}
-              onChange={(e) => setMatricule(e.target.value)}
-              placeholder="Entrez votre matricule"
-              required
-              className="bg-gray-700 border border-gray-600 text-white rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-300">
-              Mot de passe
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              className="bg-gray-700 border border-gray-600 text-white rounded-lg block w-full p-2.5 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
+            <div className="relative text-s">
+              <span className="absolute left-3 top-2.5 text-gray-400">
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 12H8m8-4H8m-2 8h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </span>
               <input
-                id="remember"
-                type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="w-4 h-4 border-gray-600 bg-gray-700 rounded focus:ring-blue-500"
+                type="email"
+                id="email"
+                name='email'
+                onChange={(e)=>setEmail(e.target.value)}  
+                className="w-full bg-gray-700 text-white pl-10 pr-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="you@example.com"
+                // autoComplete='off'
+                required
               />
-              <label htmlFor="remember" className="ml-2 text-sm text-gray-400">
-                Se souvenir de moi
-              </label>
             </div>
-            <a href="#" className="text-sm text-blue-400 hover:underline">
-              Mot de passe oublié ?
-            </a>
           </div>
 
+          {/* Password */}
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium mb-1">
+              Password
+            </label>
+            <div className="relative">
+              <span className="absolute left-3 top-2.5 text-gray-400">
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 11c.554 0 1-.672 1-1.5S12.554 8 12 8s-1 .672-1 1.5.446 1.5 1 1.5zM6 21h12a2 2 0 002-2V8a2 2 0 00-2-2h-1V4a2 2 0 00-4 0v2H9V4a2 2 0 00-4 0v2H4a2 2 0 00-2 2v11a2 2 0 002 2z" />
+                </svg>
+              </span>
+              <input
+                type="password"
+                id="password"
+                name='password'
+                onChange={(e)=>setPassword(e.target.value)}  
+                className="w-full bg-gray-700 text-white pl-10 pr-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex items-center gap-2">
+              <input type="checkbox" className="form-checkbox bg-gray-700 text-indigo-500 rounded" />
+              Remember me
+            </label>
+            <a href="#" className="text-indigo-400 hover:underline">Forgot password?</a>
+          </div>
+
+          {/* Submit */}
           <button
             type="submit"
-            className="w-full text-white bg-blue-600 hover:bg-blue-700 transition focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 transition-colors text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
-            Se connecter
+            Sign In
           </button>
-
-          <p className="text-sm font-light text-gray-400 text-center">
-            Pas encore inscrit ?{' '}
-            <a href="#" className="font-medium text-blue-400 hover:underline">
-              Créer un compte
-            </a>
-          </p>
         </form>
 
-        {/* Messages */}
-        {messages.length > 0 && (
-          <div className="flex flex-col space-y-4 mt-4">
-            {messages.map((message, idx) => (
-              <div
-                key={idx}
-                className={`flex items-center p-4 mb-4 text-sm border rounded-lg mx-auto w-4/5 ${
-                  message.type === 'error'
-                    ? 'text-red-400 bg-gray-800 border-red-600'
-                    : message.type === 'success'
-                    ? 'text-green-400 bg-gray-800 border-green-600'
-                    : message.type === 'warning'
-                    ? 'text-yellow-400 bg-gray-800 border-yellow-600'
-                    : 'text-blue-400 bg-gray-800 border-blue-600'
-                }`}
-                role="alert"
-              >
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.5 9.5 0 0 0 10 .5ZM9 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-                </svg>
-                <div>{message.text}</div>
-              </div>
-            ))}
-          </div>
-        )}
+        
       </div>
     </div>
-  </div>
-</>
-
   );
 }

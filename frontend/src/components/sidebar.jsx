@@ -1,6 +1,9 @@
 import { useState } from "react";
+
 import '../assets/styles/sidebar.css'
 import brandimage from '../assets/images/brand.png'
+import Loading from '../components/Loading'
+import { useEffect } from "react";
 function Sidebar() {
       // Menu 1
       const [menu1Ouvert, ChangerEtat1] = useState(false); // état du menu
@@ -15,6 +18,29 @@ function Sidebar() {
       }
 
 
+
+      const [userData, setUserData] = useState(null);
+      
+        useEffect(() => {
+          const fetchData = async () => {
+            try {
+              const response = await fetch('http://localhost:8000/dashboard/', {
+                credentials: 'include',
+              });
+      
+              const data = await response.json();
+              setUserData(data); // Set user data to state
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+      
+          fetchData();
+        }, []);
+
+    if (!userData) {
+      return <Loading />;
+    }
     return (
         <aside  className="bg-gray-900 text-white">
       <div className="p-4 border-b border-gray-800">
@@ -137,14 +163,15 @@ function Sidebar() {
       {/* User Profile */}
       <div id="profile" className="p-4 border-t border-gray-800">
         <div className="flex items-center">
-          <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+          <img className="h-8 w-8 rounded-full" src={"http://localhost:8000" + userData.photo_url} alt="aa" />
           <div className="ml-3">
-            <p className="text-sm font-medium text-white">Tayar Ali</p>
-            <p className="text-xs text-gray-400">View profile</p>
+            <p className="text-sm font-medium text-white">{ userData.first_name } { userData.last_name }</p>
+            <p className="text-xs text-gray-400">{ userData.email }</p>
           </div>
         </div>
       </div>
       </aside>
+      
     );
 }
 
