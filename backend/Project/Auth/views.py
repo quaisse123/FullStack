@@ -30,10 +30,10 @@ def login_view(request):
             return JsonResponse({'error': 'Invalid credentials'}, status=400)
 
 
-
+@csrf_exempt
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return JsonResponse({'message': 'Déconnecté avec succès'}) 
 
 
 def register_etudiant(request):

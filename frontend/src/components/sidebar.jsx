@@ -3,8 +3,11 @@ import { useState } from "react";
 import '../assets/styles/sidebar.css'
 import brandimage from '../assets/images/brand.png'
 import Loading from '../components/Loading'
+import MessageBox from '../components/Login/MessageBox'
 import { useEffect } from "react";
+
 function Sidebar() {
+      const [showMessageBox, setShowMessageBox] = useState(false);
       // Menu 1
       const [menu1Ouvert, ChangerEtat1] = useState(false); // état du menu
       const toggleMenu1 = () => {
@@ -17,8 +20,8 @@ function Sidebar() {
         ChangerEtat2 (!menu2Ouvert);
       }
 
-
-
+      
+      // Récupération des données du user connecté
       const [userData, setUserData] = useState(null);
       
         useEffect(() => {
@@ -38,11 +41,31 @@ function Sidebar() {
           fetchData();
         }, []);
 
-    if (!userData) {
-      return <Loading />;
-    }
+      if (!userData) {
+        return <Loading />;
+      }
+
+      function handleLogout() {
+        fetch('http://localhost:8000/auth/logout', {
+          method: 'POST',
+          credentials: 'include',
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data.message);
+          // Rediriger après logout
+          window.location.href = 'http://127.0.0.1:8000/get-started/';
+        });
+      }
+
+      function AreYouSure () {
+        setShowMessageBox(true)
+      }
+
     return (
-        <aside  className="bg-gray-900 text-white">
+        <>
+          {showMessageBox && <MessageBox handleLogout={handleLogout} setShowMessageBox={setShowMessageBox} /> }
+          <aside  className="bg-gray-900 text-white">
       <div className="p-4 border-b border-gray-800">
         <div className="flex items-center gap-1 ">
           <img src={ brandimage } alt="Logo" className="h-8 w-auto" />
@@ -161,16 +184,22 @@ function Sidebar() {
       </nav>
 
       {/* User Profile */}
-      <div id="profile" className="p-4 border-t border-gray-800">
-        <div className="flex items-center">
+      <div id="profile" className="p-4 border-t border-gray-800 ">
+        <div className="flex items-center ">
           <img className="h-8 w-8 rounded-full" src={"http://localhost:8000" + userData.photo_url} alt="aa" />
           <div className="ml-3">
             <p className="text-sm font-medium text-white">{ userData.first_name } { userData.last_name }</p>
             <p className="text-xs text-gray-400">{ userData.email }</p>
           </div>
+          <span className="ml-auto">
+            <svg onClick={AreYouSure} id="LogoutIcon" className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+            </svg>
+          </span>
         </div>
       </div>
-      </aside>
+          </aside>
+        </>
       
     );
 }

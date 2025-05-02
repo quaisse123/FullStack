@@ -13,7 +13,6 @@ def Dashboard (request):
         last_name = request.user.last_name
         email = request.user.email
         photo_url = MembreBureau.objects.get(user=request.user).photo.url
-        print("Ana f dashboard view ","="*70,"\n",first_name,last_name,email,photo_url,"\n","="*70)
         # Utilise ces données dans ton contexte pour les afficher dans le template
         return JsonResponse({
             'first_name': first_name,

@@ -1,0 +1,517 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trendify</title>
+    <link rel="icon" href="{% static 'images/brand.png' %}" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#8B5CF6',
+                        dark: '#111827',
+                        darker: '#0F172A'
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="bg-dark text-white min-h-screen flex flex-col">
+    <!-- Header Section -->
+    <header class="relative overflow-hidden bg-darker">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-purple-900/70"></div>
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center opacity-20"></div>
+        </div>
+        <nav class="relative z-10 container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="{% static 'images/brand.png' %}" alt="Logo ENSAM" class="h-10 mr-3">
+                <span class="text-2xl font-bold">Trendify</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="hover:text-primary transition-colors">Services</a>
+                <a href="#clubs" class="hover:text-primary transition-colors">Clubs</a>
+                <a href="#events" class="hover:text-primary transition-colors">Événements</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden relative z-10 md:hidden bg-darker py-4 px-6">
+            <div class="flex flex-col space-y-4">
+                <a href="#services" class="hover:text-primary transition-colors">Services</a>
+                <a href="#clubs" class="hover:text-primary transition-colors">Clubs</a>
+                <a href="#events" class="hover:text-primary transition-colors">Événements</a>
+                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+            </div>
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-6 py-20 md:py-32 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-shadow animate-pulse-slow">
+                Plonge au cœur de la vie étudiante de l'ENSAM Casablanca
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-300">
+                Découvre, participe et épanouis-toi au sein des clubs qui façonnent l'avenir de notre école.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="window.location.href='http://localhost:5173/auth/login';" class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 hover:shadow-lg">
+                    Je suis étudiant ENSAM
+                </button>
+                <button class="bg-transparent hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full border-2 border-white transition-all transform hover:scale-105">
+                    Je suis visiteur
+                </button>
+            </div>
+            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-3xl pb-4">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gradient-to-b from-darker to-dark">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Nos Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-dark/50 rounded-xl p-6 shadow-lg card-hover border border-gray-800">
+                    <div class="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-calendar-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Gestion des Événements</h3>
+                    <p class="text-gray-400 text-center">Accède à tous les événements des clubs et inscris-toi en quelques clics.</p>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="bg-dark/50 rounded-xl p-6 shadow-lg card-hover border border-gray-800">
+                    <div class="bg-green-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-user-plus text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Adhésion aux Clubs</h3>
+                    <p class="text-gray-400 text-center">Rejoins les clubs qui t'intéressent et gère tes adhésions facilement.</p>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="bg-dark/50 rounded-xl p-6 shadow-lg card-hover border border-gray-800">
+                    <div class="bg-purple-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-newspaper text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Actualités & Projets</h3>
+                    <p class="text-gray-400 text-center">Reste informé des dernières actualités et découvre les projets phares.</p>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="bg-dark/50 rounded-xl p-6 shadow-lg card-hover border border-gray-800">
+                    <div class="bg-yellow-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-certificate text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Certification</h3>
+                    <p class="text-gray-400 text-center">Obtiens des certificats pour valoriser ton engagement associatif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clubs Section -->
+    <section id="clubs" class="py-20 bg-dark">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Découvrir les Clubs</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Club 1 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-laptop-code text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club Informatique</h3>
+                    <p class="text-sm text-gray-400">Développement, IA, cybersécurité</p>
+                </div>
+                
+                <!-- Club 2 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club Environnement</h3>
+                    <p class="text-sm text-gray-400">Projets écologiques, sensibilisation</p>
+                </div>
+                
+                <!-- Club 3 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-robot text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club Robotique</h3>
+                    <p class="text-sm text-gray-400">Compétitions, prototypage</p>
+                </div>
+                
+                <!-- Club 4 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-palette text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club Arts</h3>
+                    <p class="text-sm text-gray-400">Théâtre, musique, expositions</p>
+                </div>
+                
+                <!-- Club 5 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-globe text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club International</h3>
+                    <p class="text-sm text-gray-400">Échanges, langues, cultures</p>
+                </div>
+                
+                <!-- Club 6 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heartbeat text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club Solidarité</h3>
+                    <p class="text-sm text-gray-400">Actions sociales, bénévolat</p>
+                </div>
+                
+                <!-- Club 7 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-microscope text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club Sciences</h3>
+                    <p class="text-sm text-gray-400">Recherche, expériences, vulgarisation</p>
+                </div>
+                
+                <!-- Club 8 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-futbol text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club Sports</h3>
+                    <p class="text-sm text-gray-400">Compétitions, entraînements</p>
+                </div>
+                
+                <!-- Club 9 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club Innovation</h3>
+                    <p class="text-sm text-gray-400">Startups, entrepreneuriat</p>
+                </div>
+                
+                <!-- Club 10 -->
+                <div class="club-card bg-darker rounded-xl p-6 text-center card-hover">
+                    <div class="w-20 h-20 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-camera text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Club Média</h3>
+                    <p class="text-sm text-gray-400">Photographie, vidéo, journalisme</p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button class="bg-accent hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                    Voir tous les clubs
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 bg-gradient-to-b from-dark to-darker">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Événements à venir</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-darker rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-cover bg-center relative" style="background-image: url('data:image/png;base64,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');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                            <div>
+                                <h3 class="text-xl font-bold mt-2">Caravane : Don de sang</h3>
+                                <p class="text-gray-300 text-sm mt-1">15-16 Mai 2023 - Club Rotaract</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="bg-darker rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gray-700 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                            <div>
+                                <span class="bg-green-600 text-white text-sm font-bold px-3 py-1 rounded-full">Club Environnement</span>
+                                <h3 class="text-xl font-bold mt-2">Journée Écologique</h3>
+                                <p class="text-gray-300 text-sm mt-1">22 Mai 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="bg-darker rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gray-700 relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                            <div>
+                                <span class="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded-full">Club Robotique</span>
+                                <h3 class="text-xl font-bold mt-2">Compétition de Robots</h3>
+                                <p class="text-gray-300 text-sm mt-1">3-4 Juin 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button class="bg-transparent hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full border-2 border-white transition-all transform hover:scale-105">
+                    Voir tous les événements
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-900 to-purple-900">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Rejoins les clubs qui bougent l'école !</h2>
+            <p class="text-xl mb-10 max-w-3xl mx-auto text-gray-200">
+                Que tu sois étudiant à l'ENSAM ou visiteur externe, découvre la richesse de notre vie associative.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button  id="student-btn" class="bg-white text-purple-900 hover:bg-gray-200 font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 hover:shadow-lg">
+                    Je suis étudiant ENSAM
+                </button>
+                <button id="visitor-btn" class="bg-transparent hover:bg-white/20 text-white font-bold py-3 px-8 rounded-full border-2 border-white transition-all transform hover:scale-105">
+                    Je suis visiteur
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-darker py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <img src="{% static 'images/brand.png' %}" alt="Logo ENSAM" class="h-10 mr-3">
+                        <span class="text-xl font-bold">Trendify</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Plateforme officielle des clubs et associations de l'École Nationale Supérieure d'Arts et Métiers de Casablanca.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Liens Rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#clubs" class="text-gray-400 hover:text-white transition-colors">Clubs</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white transition-colors">Événements</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>150 Boulevard du Nil, Casablanca, Maroc</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>clubs@ensam-casa.ma</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>+212 5 22 56 42 22</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-block mt-4 text-primary hover:text-blue-400 transition-colors">
+                        Formulaire de contact
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 ENSAM Casablanca Clubs. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Students -->
+    <div id="student-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+        <div class="bg-darker rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Espace Étudiant ENSAM</h3>
+                <button class="modal-close text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-gray-400 mb-2" for="student-email">Email Académique</label>
+                    <input type="email" id="student-email" class="w-full bg-dark border border-gray-700 rounded px-4 py-2 text-white" placeholder="prenom.nom@ensam-casa.ma">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-400 mb-2" for="student-password">Mot de Passe</label>
+                    <input type="password" id="student-password" class="w-full bg-dark border border-gray-700 rounded px-4 py-2 text-white">
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">
+                    Se Connecter
+                </button>
+                <div class="text-center mt-4 text-gray-400">
+                    <a href="#" class="text-primary hover:text-blue-400 transition-colors">Mot de passe oublié?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Visitors -->
+    <div id="visitor-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+        <div class="bg-darker rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Bienvenue, Visiteur!</h3>
+                <button class="modal-close text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <p class="text-gray-400 mb-6">
+                Découvrez la vie étudiante dynamique de l'ENSAM Casablanca. Que souhaitez-vous explorer?
+            </p>
+            <div class="space-y-3">
+                <a href="#clubs" class="modal-close block w-full bg-accent hover:bg-purple-700 text-white font-bold py-2 px-4 rounded text-center transition-colors">
+                    Découvrir les Clubs
+                </a>
+                <a href="#events" class="modal-close block w-full bg-dark hover:bg-gray-800 text-white font-bold py-2 px-4 rounded text-center transition-colors">
+                    Voir les Événements
+                </a>
+                <a href="#" class="modal-close block w-full bg-dark hover:bg-gray-800 text-white font-bold py-2 px-4 rounded text-center transition-colors">
+                    Projets Phares
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal Functionality
+        const studentBtn = document.getElementById('student-btn');
+        const visitorBtn = document.getElementById('visitor-btn');
+        const studentModal = document.getElementById('student-modal');
+        const visitorModal = document.getElementById('visitor-modal');
+        const modalCloseButtons = document.querySelectorAll('.modal-close');
+
+        studentBtn.addEventListener('click', () => {
+            studentModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        visitorBtn.addEventListener('click', () => {
+            visitorModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        modalCloseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                studentModal.classList.add('hidden');
+                visitorModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === studentModal) {
+                studentModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+            if (e.target === visitorModal) {
+                visitorModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Scroll Animation for Sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                    
+                    // Smooth scroll to target
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation for club cards
+        const clubCards = document.querySelectorAll('.club-card');
+        clubCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('i').classList.add('fa-bounce');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('i').classList.remove('fa-bounce');
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

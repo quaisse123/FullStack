@@ -17,3 +17,12 @@ aside::-webkit-scrollbar {
     background-color:rgb(17,24,39) ;
     cursor: pointer;
 }
+
+#LogoutIcon{
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#LogoutIcon:hover{
+    transform: scale(1.2);
+}

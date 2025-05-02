@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path ,include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include ('Api.urls')),
     path('auth/', include ('Auth.urls')),
     path('dashboard/', include ('Dashboard.urls')),
+    path('get-started/', TemplateView.as_view(template_name='LandingPage.html')),
 ]
 
 if settings.DEBUG:
