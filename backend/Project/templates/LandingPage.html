@@ -41,7 +41,29 @@
                 box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             }
         }
+        .typing {
+            color: white;
+            font-family: monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid white;
+            width: 0;
+            animation: typing 1s steps(80, end) infinite alternate,
+                       blink 0.7s step-end infinite;
+          }
+          
+          @keyframes typing {
+            from { width: 0 }
+            to { width: 12ch }
+          }
+          
+          @keyframes blink {
+            50% { border-color: transparent }
+          }
+          
+          
     </style>
+    
 </head>
 <body class="bg-dark text-white min-h-screen flex flex-col">
     <!-- Header Section -->
@@ -77,10 +99,10 @@
         </div>
         
         <div class="relative z-10 container mx-auto px-6 py-20 md:py-32 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-shadow animate-pulse-slow">
+            <h1 class=" text-4xl md:text-6xl font-bold mb-6 text-shadow ">
                 Plonge au cœur de la vie étudiante de l'ENSAM Casablanca
             </h1>
-            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-300">
+            <p class="text-xl  md:text-2xl mb-10 max-w-3xl mx-auto text-gray-300">
                 Découvre, participe et épanouis-toi au sein des clubs qui façonnent l'avenir de notre école.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -379,7 +401,7 @@
     </footer>
 
     <!-- Modal for Students -->
-    <div id="student-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
+    <div id="student-modal" class="fixed inset-0 bg-black/80  items-center justify-center z-50 hidden">
         <div class="bg-darker rounded-xl p-8 max-w-md w-full mx-4">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-xl font-bold">Espace Étudiant ENSAM</h3>
@@ -407,7 +429,6 @@
     </div>
 
     <!-- Modal for Visitors -->
-    <div id="visitor-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden">
         <div class="bg-darker rounded-xl p-8 max-w-md w-full mx-4">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-xl font-bold">Bienvenue, Visiteur!</h3>

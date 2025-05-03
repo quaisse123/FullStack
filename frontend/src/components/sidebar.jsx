@@ -5,6 +5,7 @@ import brandimage from '../assets/images/brand.png'
 import Loading from '../components/Loading'
 import MessageBox from '../components/Login/MessageBox'
 import { useEffect } from "react";
+import { NavLink } from 'react-router-dom';
 
 function Sidebar() {
       const [showMessageBox, setShowMessageBox] = useState(false);
@@ -62,6 +63,11 @@ function Sidebar() {
         setShowMessageBox(true)
       }
 
+      function urlContains(part) {
+        const isActive = window.location.pathname.includes(part);
+        return isActive ? 'bg-gray-800' : ''
+      }
+
     return (
         <>
           {showMessageBox && <MessageBox handleLogout={handleLogout} setShowMessageBox={setShowMessageBox} /> }
@@ -93,14 +99,38 @@ function Sidebar() {
         {/* Main Navigation */}
         <div className="space-y-4">
           {/* Dashboard */}
-          <a href="#" className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg bg-gray-800 text-white group transition-all duration-200 hover:bg-gray-700">
+          <a href="/dashboard" className={`${urlContains("dashboard")} flex items-center px-4 py-2.5 text-sm font-medium rounded-lg  text-white group transition-all duration-200 hover:bg-gray-700`}>
             <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
             Dashboard
           </a>
 
-          
+          {/* Team Dropdown */}
+          <div className="space-y-1">
+            <button onClick={toggleMenu2} className={`${urlContains("membres")} w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none`} aria-expanded="false" aria-controls="team-dropdown">
+              <div className="flex items-center">
+                <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                Membres
+              </div>
+              <svg className="ml-2 h-5 w-5 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+            <div style={{ display : menu2Ouvert ? "block" : "none" }} className="hidden space-y-1 pl-11" id="team-dropdown">
+              <a href="/membres/liste" className={`${urlContains("liste")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
+                Liste des adhérents
+              </a>
+              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                Nouveau adhérent
+              </a>
+              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                Settings
+              </a>
+            </div>
+          </div>
 
           {/* Analytics Dropdown */}
           <div className="space-y-1">
@@ -131,31 +161,7 @@ function Sidebar() {
             </div>
           </div>
 
-          {/* Team Dropdown */}
-          <div className="space-y-1">
-            <button onClick={toggleMenu2} className="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none" aria-expanded="false" aria-controls="team-dropdown">
-              <div className="flex items-center">
-                <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                Team
-              </div>
-              <svg className="ml-2 h-5 w-5 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </button>
-            <div style={{ display : menu2Ouvert ? "block" : "none" }} className="hidden space-y-1 pl-11" id="team-dropdown">
-              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                Members
-              </a>
-              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                Calendar
-              </a>
-              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                Settings
-              </a>
-            </div>
-          </div>
+          
 
           {/* Projects */}
           <a href="#" className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
