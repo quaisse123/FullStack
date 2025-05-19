@@ -107,32 +107,45 @@ function Sidebar() {
           </a>
 
           {/* Team Dropdown */}
-          <div className="space-y-1">
-            <button onClick={toggleMenu2} className={`${urlContains("membres")} w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none`} aria-expanded="false" aria-controls="team-dropdown">
-              <div className="flex items-center">
-                <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                Membres
-              </div>
-              <svg className="ml-2 h-5 w-5 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </button>
-            <div style={{ display : menu2Ouvert ? "block" : "none" }} className="hidden space-y-1 pl-11" id="team-dropdown">
-              <a href="/membres/liste" className={`${urlContains("liste")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
-                Liste des adhérents
-              </a>
-              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                Nouveau adhérent
-              </a>
-              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                Settings
-              </a>
-            </div>
-          </div>
+                <div className="space-y-1">
+                <button onClick={toggleMenu2} className={`${urlContains("membres")} w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none`} aria-expanded="false" aria-controls="team-dropdown">
+                  <div className="flex items-center">
+                  <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  Membres
+                  </div>
+                  <svg className="ml-2 h-5 w-5 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                <div style={{ display : menu2Ouvert ? "block" : "none" }} className="hidden space-y-1 pl-5 pt-1" id="team-dropdown">
+                  <a href="/membres/liste" className={`${urlContains("liste")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
+                  {/* Liste des adhérents icon */}
+                  <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-7a4 4 0 11-8 0 4 4 0 018 0zm6 4a4 4 0 10-8 0 4 4 0 008 0z" />
+                  </svg>
+                  Liste des adhérents
+                  </a>
+                  <a href="/membres/ajouter" className={`${urlContains("ajouter")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
+                  {/* Nouveau adhérent icon */}
+                  <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                  </svg>
+                  Nouveau adhérent
+                  </a>
+                  <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                  {/* Settings icon */}
+                  <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0a1.724 1.724 0 002.573.982c.797-.46 1.8.244 1.6 1.118a1.724 1.724 0 001.516 2.356c.958.065 1.32 1.311.564 1.93a1.724 1.724 0 000 2.764c.756.619.394 1.865-.564 1.93a1.724 1.724 0 00-1.516 2.356c.2.874-.803 1.578-1.6 1.118a1.724 1.724 0 00-2.573.982c-.3.921-1.603.921-1.902 0a1.724 1.724 0 00-2.573-.982c-.797.46-1.8-.244-1.6-1.118a1.724 1.724 0 00-1.516-2.356c-.958-.065-1.32-1.311-.564-1.93a1.724 1.724 0 000-2.764c-.756-.619-.394-1.865.564-1.93a1.724 1.724 0 001.516-2.356c-.2-.874.803-1.578 1.6-1.118.87.502 1.973-.28 2.573-.982z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                  Settings
+                  </a>
+                </div>
+                </div>
 
-          {/* Analytics Dropdown */}
+                {/* Analytics Dropdown */}
           <div className="space-y-1">
             <button onClick={toggleMenu1} id="menu1" className="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none" aria-expanded={menu1Ouvert} aria-controls="analytics-dropdown">
               <div className="flex items-center">
@@ -145,7 +158,7 @@ function Sidebar() {
                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             </button>
-            <div className="space-y-1 pl-11"
+            <div className="space-y-1"
                  id="analytics-dropdown"
                  style={{display : menu1Ouvert ? "block" : "none" }}
                  >

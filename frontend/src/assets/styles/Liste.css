@@ -1,0 +1,11 @@
+table tr {
+    cursor: pointer;
+}
+
+#tableContainer{
+    height: 40rem;
+}
+
+#filters select{
+    cursor: pointer;
+}
