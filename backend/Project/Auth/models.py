@@ -24,7 +24,7 @@ FILIERES  = [
 class Adherent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='adherent_profile')
     photo = models.ImageField(upload_to='profile_photos/', default=DEFAULT_PROFILE)
-    date_adhesion = models.DateField(auto_now_add=True)
+    date_adhesion = models.DateField()
     is_approved = models.BooleanField(default=True)
     niveau = models.CharField(max_length=10, choices=NIVEAUX , blank=True, null=True)
     filiere = models.CharField(max_length=10, choices=FILIERES , blank=True, null=True)

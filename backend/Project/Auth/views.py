@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import Etudiant , MembreBureau ,Adherent
 from django.contrib import messages
-
+from .serializers import AdherentSerializer
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -60,3 +60,12 @@ def register_etudiant(request):
         return redirect('login')
 
     return render(request, 'register.html')
+
+
+def profile_view(request, id):
+    print(f"Profile requested for user id={id}")
+    user = User.objects.get(id=id)
+    adherent = Adherent.objects.filter(user=user)
+    serializer = AdherentSerializer(adherent, many=True)
+    
+    return JsonResponse(serializer.data, safe=False)

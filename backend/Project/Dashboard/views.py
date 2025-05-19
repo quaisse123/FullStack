@@ -1,13 +1,11 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from Auth.models import MembreBureau
+from Auth.models import MembreBureau ,Adherent
 # Create your views here.
 
 
 def Dashboard (request):
-    print('='*200)
-    print("Dkhelt lview dial dashboard",request.user)
-    print('='*200)
+    nbr_adherents = Adherent.objects.count()
     if request.user.is_authenticated:
         first_name = request.user.first_name
         last_name = request.user.last_name
@@ -19,6 +17,7 @@ def Dashboard (request):
             'last_name': last_name,
             'email': email,
             'photo_url': photo_url,
+            'nbr_adherents': nbr_adherents
         })
     else :
         return JsonResponse({'error' : 'Données non transmises'})
