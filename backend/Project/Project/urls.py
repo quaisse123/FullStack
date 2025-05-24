@@ -27,7 +27,9 @@ urlpatterns = [
     path('dashboard/', include ('Dashboard.urls')),
     path('Apimembres/', include ('Membres.urls')),
     path('get-started/', TemplateView.as_view(template_name='LandingPage.html')),
-]
+    path('api/', include('ApiAnnonce.urls')),
+
+] 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
