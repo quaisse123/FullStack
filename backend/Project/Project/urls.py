@@ -23,12 +23,14 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('get-started/', TemplateView.as_view(template_name='LandingPage.html')),
     path('admin/', admin.site.urls),
-    path('api/', include ('Api.urls')),
+    
     path('auth/', include ('Auth.urls')),
     path('dashboard/', include ('Dashboard.urls')),
     path('Apimembres/', include ('Membres.urls')),
     path('Apievents/', include ('ApiEvents.urls')),
-]
+    path('api/', include('ApiAnnonce.urls')),
+
+] 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
