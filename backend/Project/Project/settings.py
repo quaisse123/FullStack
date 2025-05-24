@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'Auth',
     'Dashboard',
     'Membres',
+    'ApiEvents',
 ]
 
 MIDDLEWARE = [

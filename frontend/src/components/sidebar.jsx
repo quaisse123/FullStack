@@ -58,7 +58,7 @@ function Sidebar() {
           window.location.href = 'http://127.0.0.1:8000/get-started/';
         });
       }
-
+      
       function AreYouSure () {
         setShowMessageBox(true)
       }
@@ -68,6 +68,10 @@ function Sidebar() {
         return isActive ? 'bg-gray-800' : ''
       }
 
+      function ShowProfil   (id) {
+    window.location.href = `/membres/profil/${userData.id}`;
+  }
+  
     return (
         <>
           {showMessageBox && <MessageBox handleLogout={handleLogout} setShowMessageBox={setShowMessageBox} /> }
@@ -134,57 +138,54 @@ function Sidebar() {
                   </svg>
                   Nouveau adhérent
                   </a>
-                  <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                  {/* Settings icon */}
-                  <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0a1.724 1.724 0 002.573.982c.797-.46 1.8.244 1.6 1.118a1.724 1.724 0 001.516 2.356c.958.065 1.32 1.311.564 1.93a1.724 1.724 0 000 2.764c.756.619.394 1.865-.564 1.93a1.724 1.724 0 00-1.516 2.356c.2.874-.803 1.578-1.6 1.118a1.724 1.724 0 00-2.573.982c-.3.921-1.603.921-1.902 0a1.724 1.724 0 00-2.573-.982c-.797.46-1.8-.244-1.6-1.118a1.724 1.724 0 00-1.516-2.356c-.958-.065-1.32-1.311-.564-1.93a1.724 1.724 0 000-2.764c-.756-.619-.394-1.865.564-1.93a1.724 1.724 0 001.516-2.356c-.2-.874.803-1.578 1.6-1.118.87.502 1.973-.28 2.573-.982z" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                  Settings
-                  </a>
+                  
                 </div>
                 </div>
 
-                {/* Analytics Dropdown */}
-          <div className="space-y-1">
-            <button onClick={toggleMenu1} id="menu1" className="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none" aria-expanded={menu1Ouvert} aria-controls="analytics-dropdown">
-              <div className="flex items-center">
-                <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                Analytics
-              </div>
-              <svg className="ml-2 h-5 w-5 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </button>
-            <div className="space-y-1"
-                 id="analytics-dropdown"
-                 style={{display : menu1Ouvert ? "block" : "none" }}
-                 >
-              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                Overview
-              </a>
-              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                Reports
-              </a>
-              <a href="#" className="group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                Statistics
-              </a>
-            </div>
-          </div>
-
-          
-
-          {/* Projects */}
-          <a href="#" className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
-            <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-            </svg>
-            Projects
-          </a>
-
-          {/* Calendar */}
+          {/* Analytics Dropdown */}
+                      <div className="space-y-1">
+                      <button onClick={toggleMenu1} id="menu1" className={`${urlContains("events")} w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none`} aria-expanded={menu1Ouvert} aria-controls="analytics-dropdown">
+                        <div className="flex items-center">
+                        {/* Calendar/Events icon */}
+                        <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                          <title>Événements</title>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        Événements
+                        </div>
+                        <svg className="ml-2 h-5 w-5 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+                          <title>Ouvrir le menu Événements</title>
+                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                        </button>
+                        <div className="space-y-1 pl-5 pt-1"
+                           id="analytics-dropdown"
+                           style={{display : menu1Ouvert ? "block" : "none" }}
+                           >
+                              <a href="/events/upcoming" className={`${urlContains("upcoming")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
+                                <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                                  <title>Événements à venir</title>
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3" />
+                                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none"/>
+                                </svg>
+                                Événements à venir
+                              </a>
+                              <a href="/events/new" className={`${urlContains("/events/new")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
+                                <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                                  <title>Créer un événement</title>
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                                Créer un événement
+                              </a>
+                        </div>
+                        </div>
+                        <a href="#" className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
+                          <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
+                            <title>Projets</title>
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                          </svg>
+                          Projects
+                        </a>
           <a href="#" className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
             <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -203,10 +204,10 @@ function Sidebar() {
       </nav>
 
       {/* User Profile */}
-      <div id="profile" className="p-4 border-t border-gray-800 ">
+      <div  id="profile" className="p-4 border-t border-gray-800 ">
         <div className="flex items-center ">
           <img className="h-8 w-8 rounded-full" src={"http://localhost:8000" + userData.photo_url} alt="aa" />
-          <div className="ml-3">
+          <div onClick={ShowProfil} className="ml-3">
             <p className="text-sm font-medium text-white">{ userData.first_name } { userData.last_name }</p>
             <p className="text-xs text-gray-400">{ userData.email }</p>
           </div>
