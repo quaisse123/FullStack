@@ -33,8 +33,12 @@ export default function LoginPage() {
         
           const info = await test.json();
           console.log(info); // vérifie si l'utilisateur est reconnu
-        
-          navigate('/dashboard');
+          if (email.includes('@admin.com')) {
+            navigate('/dashboard');
+          } else if (email.includes('@adherent.com')) {
+            navigate('/adherent-dashboard');
+          }
+          
         }
       } catch (error) {
         console.error('Erreur lors de la connexion', error);
@@ -56,7 +60,7 @@ export default function LoginPage() {
               alt="Trendify"
               className="h-10 w-10"
             />
-            <h1 className="text-2xl font-bold">Trendify</h1>
+            <h1 className="text-2xl font-bold">Clubspace</h1>
           </div>
 
           {/* Heading */}

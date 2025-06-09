@@ -15,6 +15,9 @@ function Profil() {
   }, [id]);
   console.log(Adherent);
   if (!Adherent) return <Loading />;
+
+  const ShowProfile = () => {
+    window.location.href = `/membres/edit-profile/${id}`;}
   return (
   <div className="flex flex-col md:flex-row">
     <Sidebar />
@@ -50,7 +53,7 @@ function Profil() {
                   </div>
                 </div>
                 <div className="mt-2 md:mt-0">
-                  <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                  <button onClick={ShowProfile} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
                     Modifier le profil
                   </button>
                 </div>

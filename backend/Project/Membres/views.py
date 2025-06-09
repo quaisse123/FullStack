@@ -72,3 +72,19 @@ def AjouterAdherentAPIView(request):
         serializer.save(user=user)
         return Response({'message': 'Adhérent créé avec succès'}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+
+
+@api_view(['DELETE'])
+def DeleteAdherentAPIView(request, id):
+    try:
+        adherent = Adherent.objects.get(user__id=id)
+        adherent.delete()
+        return Response({'success': True, 'message': 'Adhérent supprimé avec succès'}, status=status.HTTP_200_OK)
+    except Adherent.DoesNotExist:
+        return Response({'success': False, 'error': 'Adhérent non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response({'success': False, 'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

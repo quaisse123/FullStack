@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trendify</title>
+    <title>Clubspace</title>
     <link rel="icon" href="{% static 'images/brand.png' %}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -75,7 +75,7 @@
         <nav class="relative z-10 container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center">
                 <img src="{% static 'images/brand.png' %}" alt="Logo ENSAM" class="h-10 mr-3">
-                <span class="text-2xl font-bold">Trendify</span>
+                <span class="text-2xl font-bold">Clubspace</span>
             </div>
             <div class="hidden md:flex space-x-8">
                 <a href="#services" class="hover:text-primary transition-colors">Services</a>
@@ -109,9 +109,9 @@
                 <button onclick="window.location.href='http://localhost:5173/auth/login';" class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 hover:shadow-lg">
                     Je suis étudiant ENSAM
                 </button>
-                <button class="bg-transparent hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full border-2 border-white transition-all transform hover:scale-105">
+                <a href="#clubs" class="bg-transparent hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full border-2 border-white transition-all transform hover:scale-105">
                     Je suis visiteur
-                </button>
+                </a>
             </div>
             <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-3xl pb-4">
                 <i class="fas fa-chevron-down"></i>
@@ -259,9 +259,9 @@
                 </div>
             </div>
             <div class="text-center mt-12">
-                <button class="bg-accent hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                <a href="http://localhost:5173/auth/login" class="bg-accent hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
                     Voir tous les clubs
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -308,9 +308,9 @@
             </div>
         </div>
             <div class="text-center mt-12">
-                <button class="bg-transparent hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full border-2 border-white transition-all transform hover:scale-105">
+                <a href="http://localhost:5173/auth/login" class="bg-transparent hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full border-2 border-white transition-all transform hover:scale-105">
                     Voir tous les événements
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -322,14 +322,7 @@
             <p class="text-xl mb-10 max-w-3xl mx-auto text-gray-200">
                 Que tu sois étudiant à l'ENSAM ou visiteur externe, découvre la richesse de notre vie associative.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button  id="student-btn" class="bg-white text-purple-900 hover:bg-gray-200 font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 hover:shadow-lg">
-                    Je suis étudiant ENSAM
-                </button>
-                <button id="visitor-btn" class="bg-transparent hover:bg-white/20 text-white font-bold py-3 px-8 rounded-full border-2 border-white transition-all transform hover:scale-105">
-                    Je suis visiteur
-                </button>
-            </div>
+           
         </div>
     </section>
 
@@ -340,7 +333,7 @@
                 <div class="md:col-span-2">
                     <div class="flex items-center mb-4">
                         <img src="{% static 'images/brand.png' %}" alt="Logo ENSAM" class="h-10 mr-3">
-                        <span class="text-xl font-bold">Trendify</span>
+                        <span class="text-xl font-bold">Clubspace</span>
                     </div>
                     <p class="text-gray-400 mb-6">
                         Plateforme officielle des clubs et associations de l'École Nationale Supérieure d'Arts et Métiers de Casablanca.

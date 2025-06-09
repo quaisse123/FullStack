@@ -33,21 +33,21 @@ const Cards = () => {
                 className="bg-white shadow-md rounded-lg p-4 hover:bg-gray-100 transition duration-300 ease-in-out transform hover:scale-105"
                 style={cardStyle}
             >
-                <h2 className="text-lg font-semibold text-gray-800">Total Members</h2>
+                <h2 className="text-lg font-semibold text-gray-800">Nombre total d’adhérents</h2>
                 <p className="text-3xl font-bold text-blue-600">{totalMembers}</p>
             </div>
-            <div hover:bg-gray-100 transition duration-300 ease-in-out transform hover:scale-105
+            <div
                 className="bg-white shadow-md rounded-lg p-4 hover:bg-gray-100 transition duration-300 ease-in-out transform hover:scale-105"
                 style={cardStyle}
             >
-                <h2 className="text-lg font-semibold text-gray-800">Active Members</h2>
+                <h2 className="text-lg font-semibold text-gray-800">Adhérents actifs</h2>
                 <p className="text-3xl font-bold text-green-600">95 %</p>
             </div>
             <div
                 className="bg-white shadow-md rounded-lg p-4 hover:bg-gray-100 transition duration-300 ease-in-out transform hover:scale-105"
                 style={cardStyle}
             >
-                <h2 className="text-lg font-semibold text-gray-800">Pending Applications</h2>
+                <h2 className="text-lg font-semibold text-gray-800">Demandes en attente</h2>
                 <p className="text-3xl font-bold text-yellow-600">15</p>
             </div>
         </>

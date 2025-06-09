@@ -28,18 +28,19 @@ function Annonces() {
             titre: 'Annonce',
             contenu: newMessage.trim(),
         };
-
         fetch('http://localhost:8000/api/annonces/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
         })
-            .then(res => res.text())
-            .then(text => {
+        .then(res => res.text())
+        .then(text => {
                 try {
                     const data = JSON.parse(text);
                     setAnnonces(prev => [...prev, data]);
                     setNewMessage('');
+                    
+
                 } catch (e) {
                     console.error('Erreur parsing JSON:', e);
                 }
@@ -47,8 +48,8 @@ function Annonces() {
             .catch(err => {
                 console.error('Erreur envoi annonce:', err);
             });
-    };
-
+        };
+        
     return (
         <div className="flex h-screen">
             <Sidebar />

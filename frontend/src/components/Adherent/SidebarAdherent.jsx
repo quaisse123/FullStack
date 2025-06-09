@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import '../assets/styles/sidebar.css'
-import brandimage from '../assets/images/brand.png'
-import Loading from '../components/Loading'
-import MessageBox from '../components/Login/MessageBox'
+import '../../assets/styles/sidebar.css'
+import brandimage from '../../assets/images/brand.png'
+import Loading from '../../components/Loading'
+import MessageBox from '../../components/Login/MessageBox'
 import { useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 
@@ -103,7 +103,7 @@ function Sidebar() {
         {/* Main Navigation */}
         <div className="space-y-4">
           {/* Dashboard */}
-          <a href="/dashboard" className={`${urlContains("dashboard")} flex items-center px-4 py-2.5 text-sm font-medium rounded-lg  text-white group transition-all duration-200 hover:bg-gray-700`}>
+          <a href="/adherent-dashboard" className={`${urlContains("dashboard")} flex items-center px-4 py-2.5 text-sm font-medium rounded-lg  text-white group transition-all duration-200 hover:bg-gray-700`}>
             <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
@@ -111,36 +111,7 @@ function Sidebar() {
           </a>
 
           {/* Team Dropdown */}
-                <div className="space-y-1">
-                <button onClick={toggleMenu2} className={`${urlContains("membres")} w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none`} aria-expanded="false" aria-controls="team-dropdown">
-                  <div className="flex items-center">
-                  <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                  Membres
-                  </div>
-                  <svg className="ml-2 h-5 w-5 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </button>
-                <div style={{ display : menu2Ouvert ? "block" : "none" }} className="hidden space-y-1 pl-5 pt-1" id="team-dropdown">
-                  <a href="/membres/liste" className={`${urlContains("liste")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
-                  {/* Liste des adhérents icon */}
-                  <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-7a4 4 0 11-8 0 4 4 0 018 0zm6 4a4 4 0 10-8 0 4 4 0 008 0z" />
-                  </svg>
-                  Liste des adhérents
-                  </a>
-                  <a href="/membres/ajouter" className={`${urlContains("ajouter")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
-                  {/* Nouveau adhérent icon */}
-                  <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-                  </svg>
-                  Nouveau adhérent
-                  </a>
-                  
-                </div>
-                </div>
+                
 
           {/* Analytics Dropdown */}
                       <div className="space-y-1">
@@ -158,11 +129,11 @@ function Sidebar() {
                           <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                         </svg>
                         </button>
-                        <div className="space-y-1 pl-5 pt-1"
+                        <div className="space-y-1 pt-1"
                            id="analytics-dropdown"
                            style={{display : menu1Ouvert ? "block" : "none" }}
                            >
-                              <a href="/events/upcoming" className={`${urlContains("upcoming")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
+                              <a href="/adherent-events" className={`${urlContains("adherent-events")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
                                 <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
                                   <title>Événements à venir</title>
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3" />
@@ -170,12 +141,12 @@ function Sidebar() {
                                 </svg>
                                 Événements à venir
                               </a>
-                              <a href="/events/new" className={`${urlContains("/events/new")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
+                              <a href="/adherent-events" className={`${urlContains("/events/new")} group flex items-center px-4 py-2 text-sm text-gray-300 rounded-md hover:bg-gray-700 hover:text-white`}>
                                 <svg className="h-4 w-4 mr-2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
                                   <title>Créer un événement</title>
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
                                 </svg>
-                                Créer un événement
+                                Participer à un événement
                               </a>
                         </div>
                         </div>
@@ -185,11 +156,11 @@ function Sidebar() {
           
 
           {/* Annonces */}
-          <a href="/annonces" className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
+          <a href="/adherent-annonces" className="flex items-center px-4 py-2.5 text-sm font-medium rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white group transition-all duration-200">
             <svg className="h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-            </svg>
-            Annonces
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2V8zm-2 0l-7 5-7-5" />
+                    </svg>
+            Messagerie (3)
           </a>
 
           

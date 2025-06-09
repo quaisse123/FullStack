@@ -26,7 +26,7 @@ function Dashboard() {
         const data = await response.json();
         setUserData(data); // Set user data to state
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Erreur lors de la récupération des données :', error);
       }
     };
 
@@ -42,25 +42,21 @@ function Dashboard() {
           <Content>
             <main className="flex-1 p-6 bg-gray-100">
                 <h1 className="text-2xl font-semibold text-gray-900">
-                Dashboard
+                Tableau de bord
                 </h1>
                 <div className="grid grid-cols-1 mt-6 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   
-                  {/* Info Cards */}
+                  {/* Cartes d'information */}
                   <Cards />
 
-                  {/* Progress Bars */}
-                  <ProgressBars />
-                  
-
-                  {/* Notifications Section */}
-                  <Notifications/>
-
-                  {/* Creative Idea: Upcoming Events */}
+                  {/* Idée créative : Événements à venir */}
                   <Events/>
+                  {/* Section Notifications */}
+                  <Notifications/>
+                  
+                  
 
-                  
-                  
+
                 </div>
             </main>
           </Content>
